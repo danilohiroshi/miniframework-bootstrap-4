@@ -1,0 +1,21 @@
+{
+    "name": "danilo/nbr",
+    "description": "NBR - Landing page",
+    "authors": [
+        {
+            "name": "Danilo Yamashita",
+            "email": "danilohiroshi@gmail.com"
+        }
+    ],
+    "autoload": {
+      "psr-4": {
+        "App\\": "app/"
+      }
+    },
+    "require": {
+        "swiftmailer/swiftmailer": "^6.0",
+        "twig/twig": "^2.5",
+        "illuminate/routing": "^5.5",
+        "illuminate/events": "^5.5"
+    }
+}

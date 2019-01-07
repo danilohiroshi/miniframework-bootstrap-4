@@ -1,0 +1,49 @@
+.navbar {
+  .navbar-brand {
+    background-image: url("/images/logo.png");
+    width: 90px;
+    height: 50px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  .nav-link {
+    color: black;
+    transition: color 0.25s ease;
+  }
+
+  .nav-link:hover {
+    color: $primary;
+  }
+}
+@media (max-width: 768px) {
+  .navbar-collapse {
+    position: absolute;
+    top: 54px;
+    right: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+    width: 100%;
+  }
+  .navbar-collapse.collapsing {
+    height: auto;
+    -webkit-transition: right 0.3s ease;
+    -o-transition: right 0.3s ease;
+    -moz-transition: right 0.3s ease;
+    transition: right 0.3s ease;
+    right: -100%;
+  }
+  .navbar-collapse.show {
+    right: 0;
+    -webkit-transition: right 0.3s ease-in;
+    -o-transition: right 0.3s ease-in;
+    -moz-transition: right 0.3s ease-in;
+    transition: right 0.3s ease-in;
+  }
+  .navbar-collapse.show:after {
+    content: "";
+    z-index: -1;
+  }
+}

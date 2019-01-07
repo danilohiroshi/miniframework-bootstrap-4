@@ -1,0 +1,52 @@
+version: '2'
+services:
+  app:
+    container_name: ${_MAIN_SITE}-app
+    build:
+      context: ./
+      dockerfile: app.dockerfile
+    working_dir: /var/www
+    volumes:
+      - ../:/var/www
+    environment:
+      - "DB_PORT=3306"
+      - "DB_HOST=database"
+  web:
+    container_name: ${_MAIN_SITE}-web
+    build:
+      context: ./
+      dockerfile: web.dockerfile
+    working_dir: /var/www
+    volumes_from:
+      - app
+    ports:
+      - 80:80
+  composer:
+    container_name: ${_MAIN_SITE}-composer
+    working_dir: /var/www
+    image: composer
+    command: install
+    volumes:
+      - ../:/var/www
+  mail:
+    image: mailhog/mailhog
+    container_name: ${_MAIN_SITE}-mail
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+  database:
+    image: mysql:5.6
+    container_name: ${_MAIN_SITE}-mysql
+    volumes:
+      - dbdata:/var/lib/mysql
+    expose:
+      - 3306
+    ports:
+      - "3306:3306"
+    environment:
+      - "MYSQL_DATABASE=${_MAIN_SITE}"
+      - "MYSQL_USER=root"
+      - "MYSQL_PASSWORD=root"
+      - "MYSQL_ROOT_PASSWORD=root"
+volumes:
+  dbdata:
